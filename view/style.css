@@ -1,0 +1,12 @@
+#app{
+	padding-top: 50px;
+	margin-bottom: 50px;
+}
+#app .card{
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin-bottom: 15px;
+}
+button{
+	cursor: pointer;
+}
