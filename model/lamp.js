@@ -1,8 +1,8 @@
 "use strict";
-class Fridge extends Device{
+class Lamp extends Device{
 	constructor(name, model){
 		super(name, model);
-		this._type = "fridge";
+		this._type = "lamp";
 		//this._sound = sound;
 	}
 

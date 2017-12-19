@@ -1,17 +1,13 @@
 "use strict";
 
-let myTv = new Tv('My TV 1', 'LG', new Sound());
+let myTv = new Tv('My TV', 'LG-3000', new Sound());
 
-let myTv1 = new Tv('My TV 2', 'LG-200', new Sound());
+let myFridge = new Fridge('My Fridge', 'NORD-200');
 
-let myTv2 = new Tv('My TV 3', 'LG-3000', new Sound());
+let myLamp = new Lamp('My Lamp', 'Xiaomi Yeelight');
 
-myTv1._sound.increase(); // test
-
-let myDevices = [myTv, myTv1, myTv2];
+let myDevices = [myTv, myFridge, myLamp];
 
 for(let i = 0; i < myDevices.length; i++){
 	new View(myDevices[i], document.getElementById("app")).render();
 }
-
-console.dir(myDevices);
