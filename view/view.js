@@ -8,6 +8,7 @@ class View {
 		this._soundDecBtn = document.createElement("button");
 		this._soundIncBtn = document.createElement("button");
 		this._soundOff = document.createElement("button");
+		this._btnDelete = document.createElement("button");
 	}
 
 	stateVal() {
@@ -59,6 +60,10 @@ class View {
 		let device = document.createElement("div");
 		device.className = "device card col-4";
 
+		let type = document.createElement("p");
+		type.className = "type";
+		type.innerText = `${this._device._type}`;
+
 		let name = document.createElement("h2");
 		name.innerText = `Имя: ${this._device._name}`;
 
@@ -103,8 +108,16 @@ class View {
 			this.stateVal();
 		});
 
+		this._btnDelete.type = "button";
+		this._btnDelete.className = "close";
+		this._btnDelete.innerHTML = "<span aria-hidden='true'>&times;</span>";
+		this._btnDelete.addEventListener("click", () => {
+			
+		});
+
 		/* render */
 		this.stateVal();
+		device.appendChild(type);
 		device.appendChild(name);
 		device.appendChild(model);
 
@@ -116,9 +129,12 @@ class View {
 			soundWrap.appendChild(this._soundOff);
 		}
 
-		device.appendChild(this.btnOnOff);
-
-		//this._rootElement.innerHTML = "";
+		device.appendChild(this.btnOnOff);	
+		device.appendChild(this._btnDelete);	
 		this._rootElement.appendChild(device);
+	}
+
+	clear() {
+		this._rootElement.innerHTML = "";
 	}
 }

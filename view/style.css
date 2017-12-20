@@ -1,3 +1,11 @@
+button{
+	cursor: pointer;
+}
+
+.btn-group{
+	margin-bottom: 15px;
+}
+
 #app{
 	padding-top: 50px;
 	margin-bottom: 50px;
@@ -5,12 +13,10 @@
 #app .card{
 	padding-top: 15px;
 	padding-bottom: 15px;
-	margin-bottom: 15px;
+	position: relative;
 }
-button{
-	cursor: pointer;
-}
-
-.btn-group{
-	margin-bottom: 15px;
+#app .card .close{
+	position: absolute;
+	top: 0px;
+	right: 5px;
 }

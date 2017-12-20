@@ -12,5 +12,9 @@ class Tv extends Device{
 	offVolume(){ return this._sound.off(); }
 	onVolume(){ return this._sound.on(); }
 	statusVolume(){ return this._sound._soundOff; }
+
+	newTv(name, model, sound){
+		new Tv(name, model, sound);
+	}
 	
 }

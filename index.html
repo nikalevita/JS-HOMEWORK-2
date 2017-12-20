@@ -9,16 +9,31 @@
 
 </head>
 <body>
+
 	<div class="container">
-		<form>
-			<h3>Добавить устройство</h3>
-			<select name="addDevice" id="">
-				<option value="">Телевизор</option>
-				<option value="">Холодильник</option>
-				<option value="">Лампа</option>
-			</select>
-		</form>
+		<div class="row">
+			<div class="col">
+				<form id="addForm">
+					<h3>Добавить устройство</h3>
+					<div class="form-group">
+						<select class="form-control" name="deviceType" id="deviceType">
+							<option value="tv">Телевизор</option>
+							<option value="fridge">Холодильник</option>
+							<option value="lamp">Лампа</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<input class="form-control" type="text" id="name" name="name" placeholder="Имя*" >
+					</div>
+					<div class="form-group">
+						<input class="form-control" type="text" id="model" name="model" placeholder="Модель" >
+					</div>
+					<button class="btn btn-primary" id="addDevice" name="addDevice" type="button">Добавить</button>
+				</form>
+			</div>
+		</div>
 	</div>
+
 	<div class="container">
 		<div id="app" class="row"></div>
 	</div>
