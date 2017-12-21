@@ -1,10 +1,12 @@
 "use strict";
 
-let myTv = new Tv('My TV', 'LG-3000', new Sound());
-let myFridge = new Fridge('My Fridge', 'NORD-200');
-let myLamp = new Lamp('My Lamp', 'Xiaomi Yeelight');
+let myTv = new Tv('My TV', 'LG-3000', new Sound(), new Brightness(), new Channels(["First", "Second", "Third"]));
+let myFridge = new Fridge('My Fridge', 'NORD-200', new Temperature());
+let myLamp = new Lamp('My Lamp', 'Xiaomi Yeelight', new Brightness());
 
 let myDevices = [myTv, myFridge, myLamp];
+
+console.dir(myDevices);
 
 function render(){
 	for(let i = 0; i < myDevices.length; i++){

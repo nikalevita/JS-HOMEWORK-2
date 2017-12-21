@@ -1,9 +1,11 @@
 "use strict";
 class Tv extends Device{
-	constructor(name, model, sound){
+	constructor(name, model, sound, brightness, channels){
 		super(name, model);
 		this._type = "tv";
 		this._sound = sound;
+		this._brightness = brightness;
+		this._channels = channels;
 	}
 
 	soundValue(){ return this._sound._soundValue; }
@@ -13,8 +15,4 @@ class Tv extends Device{
 	onVolume(){ return this._sound.on(); }
 	statusVolume(){ return this._sound._soundOff; }
 
-	newTv(name, model, sound){
-		new Tv(name, model, sound);
-	}
-	
 }
