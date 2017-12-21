@@ -52,7 +52,19 @@ document.getElementById('addDevice').addEventListener("click", function(){
 	myDevices.push(newDevice);
 	new View(null, document.getElementById("app")).clear();
 	render();
-
+	deleteDevice();
 });
 
 /* REMOVE */
+function deleteDevice(){
+	let btnDelete = document.getElementsByClassName('close');
+	for(let i = 0; i < myDevices.length; i++){
+	btnDelete[i].addEventListener("click", function(){
+			myDevices.splice(i, 1);
+			new View(null, document.getElementById("app")).clear();
+			render();
+			deleteDevice();
+		})
+	}
+}
+deleteDevice();
