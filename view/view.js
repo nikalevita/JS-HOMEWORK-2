@@ -4,10 +4,24 @@ class View {
 		this._device = device;
 		this._rootElement = rootElement;
 		this.btnOnOff = document.createElement("button");
+
 		this._sound = document.createElement("p");
 		this._soundDecBtn = document.createElement("button");
 		this._soundIncBtn = document.createElement("button");
 		this._soundOff = document.createElement("button");
+
+		this._bright = document.createElement("p");
+		this._brightDecBtn = document.createElement("button");
+		this._brightIncBtn = document.createElement("button");
+
+		this._temp = document.createElement("p");
+		this._tempDecBtn = document.createElement("button");
+		this._tempIncBtn = document.createElement("button");
+
+		this._channel = document.createElement("p");
+		this._channelPrevBtn = document.createElement("button");
+		this._channelNextBtn = document.createElement("button");
+
 		this._btnDelete = document.createElement("button");
 	}
 
@@ -55,6 +69,36 @@ class View {
 		}
 	}
 
+
+	brightInc() {
+		this._device.increaseBrightness();
+		this._bright.innerText = `Яркость: ${this._device.brightnessValue()}`;
+	}
+	brightDec() {
+		this._device.decreaseBrightness();
+		this._bright.innerText = `Яркость: ${this._device.brightnessValue()}`;
+	}
+
+
+	tempInc() {
+		this._device.increaseTemperature();
+		this._temp.innerText = `Температура: ${this._device.temperatureValue()}`;
+	}
+	tempDec() {
+		this._device.decreaseTemperature();
+		this._temp.innerText = `Температура: ${this._device.temperatureValue()}`;
+	}
+
+
+	channelPrev() {
+		this._device.channelPrev();
+		this._channel.innerText = `Текущий канал: ${this._device.currentChannel()}`;
+	}
+	channelNext() {
+		this._device.channelNext();
+		this._channel.innerText = `Текущий канал: ${this._device.currentChannel()}`;
+	}
+
 	render() {
 		/* info */
 		let device = document.createElement("div");
@@ -62,7 +106,7 @@ class View {
 
 		let type = document.createElement("p");
 		type.className = "type";
-		type.innerText = `${this._device._type}`;
+		type.innerText = `${this._device._type} (id-${this._device._id})`;
 
 		let name = document.createElement("h2");
 		name.innerText = `Имя: ${this._device._name}`;
@@ -100,6 +144,72 @@ class View {
 			});
 		}
 
+		let tempWrap = document.createElement("div");
+		if('_temperature' in this._device){
+			tempWrap.className = "btn-group";
+
+			this._temp.className = "temp";
+			this._temp.innerText = `Температура: ${this._device.temperatureValue()}`;
+
+			this._tempDecBtn.type = "button";
+			this._tempDecBtn.innerHTML = "-";
+			this._tempDecBtn.className = "btn btn-primary temp-dec";
+			this._tempDecBtn.addEventListener("click", () => {
+				this.tempDec();
+			});
+
+			this._tempIncBtn.type = "button";
+			this._tempIncBtn.innerHTML = "+";
+			this._tempIncBtn.className = "btn btn-primary temp-inc";
+			this._tempIncBtn.addEventListener("click", () => {
+				this.tempInc();
+			});
+		}
+
+		let brightWrap = document.createElement("div");
+		if('_brightness' in this._device){
+			brightWrap.className = "btn-group";
+
+			this._bright.className = "bright";
+			this._bright.innerText = `Яркость: ${this._device.brightnessValue()}`;
+
+			this._brightDecBtn.type = "button";
+			this._brightDecBtn.innerHTML = "-";
+			this._brightDecBtn.className = "btn btn-primary bright-dec";
+			this._brightDecBtn.addEventListener("click", () => {
+				this.brightDec();
+			});
+
+			this._brightIncBtn.type = "button";
+			this._brightIncBtn.innerHTML = "+";
+			this._brightIncBtn.className = "btn btn-primary bright-inc";
+			this._brightIncBtn.addEventListener("click", () => {
+				this.brightInc();
+			});
+		}
+
+		let channelWrap = document.createElement("div");
+		if('_channels' in this._device){
+			channelWrap.className = "btn-group";
+
+			this._channel.className = "channel";
+			this._channel.innerText = `Текущий канал: ${this._device.currentChannel()}`;
+
+			this._channelPrevBtn.type = "button";
+			this._channelPrevBtn.innerHTML = "Prev";
+			this._channelPrevBtn.className = "btn btn-primary prev";
+			this._channelPrevBtn.addEventListener("click", () => {
+				this.channelPrev();
+			});
+
+			this._channelNextBtn.type = "button";
+			this._channelNextBtn.innerHTML = "Next";
+			this._channelNextBtn.className = "btn btn-primary next";
+			this._channelNextBtn.addEventListener("click", () => {
+				this.channelNext();
+			});
+		}
+
 		/* on/off */
 		this.btnOnOff.type = "button";
 		this.btnOnOff.className = "btn";
@@ -110,9 +220,10 @@ class View {
 
 		this._btnDelete.type = "button";
 		this._btnDelete.className = "close";
+		this._btnDelete.setAttribute("data-id", this._device._id);
 		this._btnDelete.innerHTML = "<span aria-hidden='true'>&times;</span>";
 		this._btnDelete.addEventListener("click", () => {
-			
+
 		});
 
 		/* render */
@@ -127,6 +238,27 @@ class View {
 			soundWrap.appendChild(this._soundDecBtn);
 			soundWrap.appendChild(this._soundIncBtn);
 			soundWrap.appendChild(this._soundOff);
+		}
+
+		if('_temperature' in this._device){
+			device.appendChild(this._temp);
+			device.appendChild(tempWrap);
+			tempWrap.appendChild(this._tempDecBtn);
+			tempWrap.appendChild(this._tempIncBtn);
+		}
+
+		if('_brightness' in this._device){
+			device.appendChild(this._bright);
+			device.appendChild(brightWrap);
+			brightWrap.appendChild(this._brightDecBtn);
+			brightWrap.appendChild(this._brightIncBtn);
+		}
+
+		if('_channels' in this._device){
+			device.appendChild(this._channel);
+			device.appendChild(channelWrap);
+			channelWrap.appendChild(this._channelPrevBtn);
+			channelWrap.appendChild(this._channelNextBtn);
 		}
 
 		device.appendChild(this.btnOnOff);	

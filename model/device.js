@@ -1,9 +1,10 @@
 "use strict";
 class Device{
-	constructor(name, model){
+	constructor(name, model, id){
 		this._name = name;
 		this._model = model;
 		this._state = false;
+		this._id = id;
 	}
 
 	get name(){

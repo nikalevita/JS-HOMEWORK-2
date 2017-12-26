@@ -4,7 +4,8 @@ class Channels{
 		this._currentChannel = 0;
 		this._channels = channels;
 	}
-	get currentChannel(){
+	
+	currentChannel(){
 		return this._channels[this._currentChannel];
 	}
 
@@ -16,7 +17,7 @@ class Channels{
 		this._channels.splice(delEl, 1);
 	}
 
-	set currentChannel(currentChannel){
+	setCurrentChannel(currentChannel){
 		if (this._currentChannel < this._channels.length - 1) {
 			this._currentChannel = currentChannel;
 		}

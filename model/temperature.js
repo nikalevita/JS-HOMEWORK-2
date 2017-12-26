@@ -1,7 +1,7 @@
 "use strict";
 class Temperature{
 	constructor(){
-		this._value = 50;
+		this._value = 0;
 		this._max = 10;
 		this._min = -10;
 	}
